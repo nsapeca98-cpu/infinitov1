@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minhas apostas — INFINITO</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="logo" href="index.html"><span>∞</span> INFINITO</a>
+  <nav><a href="index.html">Início</a><a href="index.html#eventos">Eventos</a><a class="active" href="player.html">Minhas apostas</a></nav>
+  <button class="menu-btn">☰</button>
+</header>
+<main class="inner">
+  <span class="eyebrow">ÁREA DO JOGADOR</span>
+  <h1>Minhas apostas</h1>
+  <p class="muted">Aqui aparecerão seus palpites registrados nesta demonstração.</p>
+  <div id="history" class="history"></div>
+  <a class="primary" href="index.html#eventos">Escolher um evento →</a>
+</main>
+<footer><span>∞ INFINITO</span><p>Plataforma demonstrativa • Sem valor monetário</p></footer>
+<script>
+const bets = JSON.parse(localStorage.getItem('infinitoBets') || '[]');
+const el = document.getElementById('history');
+if (!bets.length) {
+  el.innerHTML = '<div class="empty">Você ainda não registrou nenhum palpite.</div>';
+} else {
+  el.innerHTML = bets.map((b,i) => `<div class="history-item"><div><small>PALPITE ${i+1}</small><strong>${b}</strong></div><span>Registrado</span></div>`).join('');
+}
+</script>
+</body>
+</html>
